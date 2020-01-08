@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import List from './components/List';
-import AntDemo from './components/AntDemo'
+import AntDemo from './components/AntDemo';
 import axios from 'axios';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
 import UserList from './components/userList';
-import store from './store'
-import {saveStore} from './store/actionCreators'
-
+import store from './store';
+import { saveStore, getId } from './store/actionCreators';
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +27,15 @@ class App extends Component {
         },
       ],
       content: '',
+      ...store.getState()
     };
+    store.subscribe(this.changeStore)
+  }
+
+  changeStore=()=>{
+    this.setState({
+      ...store.getState()
+    })
   }
 
   pushItem = () => {
@@ -46,9 +53,19 @@ class App extends Component {
       // self.setState({
       //   content: JSON.stringify(res),
       // });
-      console.log(res.data.list)
-      store.dispatch(saveStore({list:res.data.list}))
+      console.log(res.data.list);
+      store.dispatch(saveStore({ list: res.data.list }));
     });
+    axios.get('/getId').then(res => {
+      // self.setState({
+      //   content: JSON.stringify(res),
+      // });
+      console.log(res.data.id);
+    });
+  };
+
+  getId = () => {
+    store.dispatch(getId());
   };
 
   render() {
@@ -58,6 +75,7 @@ class App extends Component {
         <div>
           <button onClick={this.getData}>axios</button>
           <button onClick={this.pushItem}>增加</button>
+          <button onClick={this.getId}>获取Id{this.state.userId ? `：${this.state.userId}`: ''}</button>
         </div>
         <List list={this.state.list}></List>
         {this.state.content}
