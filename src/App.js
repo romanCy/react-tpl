@@ -3,6 +3,9 @@ import List from './components/List';
 import AntDemo from './components/AntDemo'
 import axios from 'axios';
 import 'antd/dist/antd.css'
+import UserList from './components/userList';
+import store from './store'
+import {saveStore} from './store/actionCreators'
 
 
 class App extends Component {
@@ -40,9 +43,11 @@ class App extends Component {
   getData = () => {
     const self = this;
     axios.get('/getdata').then(res => {
-      self.setState({
-        content: JSON.stringify(res),
-      });
+      // self.setState({
+      //   content: JSON.stringify(res),
+      // });
+      console.log(res.data.list)
+      store.dispatch(saveStore({list:res.data.list}))
     });
   };
 
@@ -56,6 +61,7 @@ class App extends Component {
         </div>
         <List list={this.state.list}></List>
         {this.state.content}
+        <UserList></UserList>
       </div>
     );
   }

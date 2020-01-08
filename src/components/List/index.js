@@ -51,7 +51,7 @@ class List extends Component {
   }
 
   componentWillUnmount() {
-    console.log('组件在删除前执行a');
+    console.log('组件在删除前执行');
   }
 
   getName = name => {

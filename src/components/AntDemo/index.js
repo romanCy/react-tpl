@@ -6,9 +6,13 @@ import {changeInputAction} from '../../store/actionCreators'
 class AntDemo extends Component {
   constructor(props) {
     super(props);
-    this.state = store.getState();
+    this.state = {
+      ...store.getState()
+    };
     store.subscribe(this.storeChange);
   }
+
+  
 
   storeChange = () => {
     this.setState(store.getState());
