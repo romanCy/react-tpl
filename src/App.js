@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import List from './components/List';
+import AntDemo from './components/AntDemo'
 import axios from 'axios';
+import 'antd/dist/antd.css'
+
 
 class App extends Component {
   constructor(props) {
@@ -46,6 +49,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <AntDemo></AntDemo>
         <div>
           <button onClick={this.getData}>axios</button>
           <button onClick={this.pushItem}>增加</button>
