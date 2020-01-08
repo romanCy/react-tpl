@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Input } from 'antd';
 import store from './../../store';
+import {changeInputAction} from '../../store/actionCreators'
 
 class AntDemo extends Component {
   constructor(props) {
@@ -14,11 +15,7 @@ class AntDemo extends Component {
   };
 
   inputChange = e => {
-    const action = {
-      type: 'changeInput',
-      value: { inputValue: e.target.value },
-    };
-    store.dispatch(action);
+    store.dispatch(changeInputAction({ inputValue: e.target.value }));
   };
   render() {
     return (
