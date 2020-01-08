@@ -5,7 +5,7 @@ import axios from 'axios';
 import 'antd/dist/antd.css';
 import UserList from './components/userList';
 import store from './store';
-import { saveStore, getId } from './store/actionCreators';
+import { saveStore,getId } from './store/actionCreators';
 
 class App extends Component {
   constructor(props) {
@@ -27,16 +27,16 @@ class App extends Component {
         },
       ],
       content: '',
-      ...store.getState()
+      ...store.getState(),
     };
-    store.subscribe(this.changeStore)
+    store.subscribe(this.changeStore);
   }
 
-  changeStore=()=>{
+  changeStore = () => {
     this.setState({
-      ...store.getState()
-    })
-  }
+      ...store.getState(),
+    });
+  };
 
   pushItem = () => {
     this.state.list.push({
@@ -65,7 +65,13 @@ class App extends Component {
   };
 
   getId = () => {
+    /**
+     * redux-thunk
+     */
     store.dispatch(getId());
+    // store.dispatch({
+    //   type: 'getId'
+    // })
   };
 
   render() {
@@ -75,7 +81,9 @@ class App extends Component {
         <div>
           <button onClick={this.getData}>axios</button>
           <button onClick={this.pushItem}>增加</button>
-          <button onClick={this.getId}>获取Id{this.state.userId ? `：${this.state.userId}`: ''}</button>
+          <button onClick={this.getId}>
+            获取Id{this.state.userId ? `：${this.state.userId}` : ''}
+          </button>
         </div>
         <List list={this.state.list}></List>
         {this.state.content}

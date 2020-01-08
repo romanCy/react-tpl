@@ -11,6 +11,10 @@ export const saveStore = (value)=>({
   value
 })
 
+/**
+ * redux-thunk
+ */
+
 export const getId = ()=>{
   return (dispatch)=>{
     Axios.get('/getId').then(res=>{
