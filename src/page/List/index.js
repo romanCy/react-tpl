@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BLayout from './../../layout'
 
 class List extends Component {
   constructor(props) {
@@ -11,8 +12,9 @@ class List extends Component {
   }
 
   render() { 
+    const content = <h1>List</h1>
     return ( <div>
-      List
+      <BLayout content={content}></BLayout>
     </div> );
   }
 }

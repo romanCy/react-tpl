@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import Index from './page/index'
 
-class App extends Component {
+class MHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {  }
   }
   render() { 
-    return ( <Index></Index> );
+    return ( <div>我是共有Header</div> );
   }
 }
  
-export default App;
+export default MHeader;
