@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BLayout from './../../layout'
+import UserList from './../UserList'
 
 class List extends Component {
   constructor(props) {
@@ -16,7 +17,11 @@ class List extends Component {
   }
 
   render() { 
-    const content = <div>List<button onClick={this.back}>back</button></div>
+    const content = <div>List<button onClick={this.back}>back</button>
+      <div>
+        <UserList></UserList>
+      </div>
+    </div>
     return ( <div>
       <BLayout content={content}></BLayout>
     </div> );
